@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Creality K1 (Max) Unbrick Tool</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <script defer src="x2000e.js"></script>
+    <style type="text/css">
+body {
+    width: 6.5in;
+    margin: auto;
+    font-family: sans-serif;
+}
+
+.steps-list > li {
+    margin: 1em 0;
+}
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1><code>Creality K1 (Max) Unbrick Tool</code> 1.0</h1>
+    </header>
+    <main>
+      <p><code>This tool attempts to unbrick the Creality K1 (Max) mainboard by switching
+	  boot to the backup partitions. This assumes one set of your partitions are
+	  still functional.</p>
+
+      <h2>How it works</h2>
+      <p>The OTA partition on the K1 contains one of two strings
+	<code>ota:kernel</code> and <code>ota:kernel2</code>. This string instructs
+	the booting process to use a specific set of partitions. This tool updates the
+	OTA string to the next one, allowing the boot process to try the alternative
+	set of partitions.</p>
+      <p>For more information about this process and access to a standalone tool
+        visit <a href="https://github.com/ballaswag/ingenic-usbboot">
+	  Creality K1 USBBoot Tool</a>.</p>
+      <noscript>
+        <p>This tool requires JavaScript. It appears you have JavaScript
+          disabled or you are using a browser which does not support JavaScript. Please
+          enable JavaScript and refresh the page.</p>
+      </noscript>
+      <div class="hide-if-webusb" hidden>
+        <p>This tool requires a browser that supports WebUSB. It appears
+          your browser does not support WebUSB. Please try visiting this page again with
+          a supported browser. Try Chrome.</p>
+      </div>
+      <div class="show-if-webusb" hidden>
+        <ol class="steps-list">
+          <li>
+	    Connect the Creality K1 mainboard microUSB to your computer. If you're on
+	    Windows, you'll need to install the <a href="https://github.com/CrealityOfficial/K1_Series_Annex/releases/tag/V1.0.0">Ingenic Burner Driver</a>. No drivers are
+	    needed on Linux/MacOS.
+	  </li>
+	  <li>
+	    Put the mainboard into flash mode by holding down BOOT, while holding BOOT,
+	    hold RESET, let go RESET, let go of BOOT. If successful one of he blue
+	    LED on the board should stay dimmed. Your computer should also recognize
+	    a new Ingenic USB device.
+	  </li>
+	  <li>
+	    <h2>USE AT YOUR OWN RISK</h2>
+	    Click <code>Change OTA</Code> and select <code>Ingenic USB BOOT Device</code>
+	    to unbrick.
+	    </br></br>
+            <div><button autocomplete="off" id="button-load" type="button">Change OTA</button></div>
+          </li>
+        </ol>
+        <div><label for="console">Log</label></div>
+        <textarea autocomplete="off" readonly cols="80" rows="20" style="max-width:100%;resize:none;" id="console"></textarea>
+        <div><button autocomplete="off" id="clear-log" type="button">Clear log</button></div>
+      </div>
+    </main>
+    <footer>
+      <h2>License Notice</h2>
+      <pre>
+Creality K1 (Max) Unbrick Tool 
+Copyrith (C) 2023 ballaswag
+
+webusb/booting code adapated from jztool/jztool.js
+Copyright (C) 2021 Aidan MacDonald
+
+jztool.js
+Copyright (C) 2021 astrolabe
+Copyright (C) 2022 Aidan MacDonald</pre>
+      <p>The JavaScript code in this page is free software: you can
+        redistribute it and/or modify it under the terms of the GNU
+        General Public License (GNU GPL) as published by the Free Software
+        Foundation, either version 2 of the License, or (at your option)
+        any later version.  The code is distributed WITHOUT ANY WARRANTY;
+        without even the implied warranty of MERCHANTABILITY or FITNESS
+        FOR A PARTICULAR PURPOSE.  See the GNU GPL for more details.</p>
+    </footer>
+  </body>
+</html>
